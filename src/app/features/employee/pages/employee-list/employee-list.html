@@ -1,0 +1,36 @@
+<app-page-header title="Employees" subtitle="Search, filter and manage employee records">
+  <a routerLink="/employees/create" class="create-link">Add Employee</a>
+</app-page-header>
+
+<section class="filters card">
+  <input class="input-like" placeholder="Search name, email or code" [ngModel]="filters().search" (ngModelChange)="updateFilter('search', $event)" />
+  <input class="input-like" placeholder="Department ID" [ngModel]="filters().departmentId" (ngModelChange)="updateFilter('departmentId', $event)" />
+  <input class="input-like" placeholder="Designation ID" [ngModel]="filters().designationId" (ngModelChange)="updateFilter('designationId', $event)" />
+  <input class="input-like" placeholder="Manager ID" [ngModel]="filters().managerId" (ngModelChange)="updateFilter('managerId', $event)" />
+  <select class="input-like" [ngModel]="filters().status" (ngModelChange)="updateFilter('status', $event)">
+    <option value="">All statuses</option>
+    <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+  </select>
+  <div class="actions">
+    <app-button (click)="applyFilters()">Apply</app-button>
+    <app-button variant="secondary" (click)="clearFilters()">Reset</app-button>
+  </div>
+</section>
+
+<app-skeleton *ngIf="loading()" [rows]="6" />
+
+<ng-container *ngIf="!loading()">
+  <app-employee-table
+    *ngIf="employees().length; else empty"
+    [employees]="employees()"
+    [direction]="direction()"
+    (sortChange)="sort($event)"
+    (deleteClick)="selectedForDelete.set($event)"
+    (statusClick)="selectedForStatus.set($event)"
+  />
+  <ng-template #empty><app-empty-state /></ng-template>
+  <app-pagination *ngIf="!hasFilters()" [page]="page()" [totalPages]="totalPages()" [totalElements]="totalElements()" (pageChange)="load($event)" />
+</ng-container>
+
+<app-delete-dialog [employee]="selectedForDelete()" (cancelled)="selectedForDelete.set(null)" (confirmed)="deleteSelected()" />
+<app-status-dialog [open]="selectedForStatus() !== null" (cancelled)="selectedForStatus.set(null)" (saved)="saveStatus($event)" />

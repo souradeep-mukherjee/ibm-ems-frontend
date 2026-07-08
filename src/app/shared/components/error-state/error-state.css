@@ -1,0 +1,20 @@
+.error {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: var(--space-3);
+  min-height: 55vh;
+  padding: var(--space-6);
+  text-align: center;
+}
+
+strong {
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: var(--color-danger);
+  color: #fff;
+  font-size: 1.8rem;
+}

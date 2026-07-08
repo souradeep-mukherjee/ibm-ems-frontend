@@ -1,0 +1,29 @@
+<app-skeleton *ngIf="loading()" [rows]="5" />
+
+<app-error-state *ngIf="failed()" title="Employee not found" message="The employee could not be loaded.">
+  <a routerLink="/employees">Back to employees</a>
+</app-error-state>
+
+<ng-container *ngIf="employee() as employee">
+  <app-page-header [title]="employee.firstName + ' ' + employee.lastName" [subtitle]="employee.employeeCode">
+    <a [routerLink]="['/employees', employee.id, 'edit']" class="edit-link">Edit</a>
+  </app-page-header>
+
+  <section class="profile card">
+    <div><span>Status</span><app-status-badge [status]="employee.employmentStatus" /></div>
+    <div><span>Email</span><strong>{{ employee.email }}</strong></div>
+    <div><span>Department</span><strong>{{ employee.departmentName || '-' }}</strong></div>
+    <div><span>Designation</span><strong>{{ employee.designationName || '-' }}</strong></div>
+    <div><span>Manager</span><strong>{{ employee.managerId || '-' }}</strong></div>
+    <div><span>Location</span><strong>{{ employee.workLocation || '-' }}</strong></div>
+  </section>
+
+  <section class="addresses">
+    <article class="card" *ngFor="let address of employee.addresses">
+      <h3>{{ address.addressType }} Address</h3>
+      <p>{{ address.addressLine1 }} {{ address.addressLine2 }}</p>
+      <p>{{ address.city }}, {{ address.state }} {{ address.postalCode }}</p>
+      <p>{{ address.country }}</p>
+    </article>
+  </section>
+</ng-container>

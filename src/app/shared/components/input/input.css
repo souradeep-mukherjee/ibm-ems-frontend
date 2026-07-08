@@ -1,0 +1,9 @@
+.field {
+  display: grid;
+  gap: 0.4rem;
+  font-weight: 650;
+}
+
+span {
+  font-size: 0.88rem;
+}

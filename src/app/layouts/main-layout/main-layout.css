@@ -1,0 +1,19 @@
+.shell {
+  display: grid;
+  min-height: calc(100vh - 8rem);
+  grid-template-columns: 15rem minmax(0, 1fr);
+}
+
+main {
+  padding: var(--space-5);
+}
+
+@media (max-width: 840px) {
+  .shell {
+    grid-template-columns: 1fr;
+  }
+
+  main {
+    padding: var(--space-4);
+  }
+}

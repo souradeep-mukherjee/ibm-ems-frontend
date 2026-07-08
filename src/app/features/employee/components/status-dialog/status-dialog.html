@@ -1,0 +1,15 @@
+<app-confirm-dialog
+  [open]="open()"
+  title="Update employee status"
+  message="Choose a new status and confirm."
+  confirmLabel="Update"
+  (cancelled)="cancelled.emit()"
+  (confirmed)="saved.emit(status())"
+>
+  <label class="select-label">
+    Status
+    <select class="input-like" [value]="status()" (change)="status.set($any($event.target).value)">
+      <option *ngFor="let option of statuses" [value]="option">{{ option }}</option>
+    </select>
+  </label>
+</app-confirm-dialog>

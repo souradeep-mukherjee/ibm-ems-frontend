@@ -1,0 +1,10 @@
+.employee-card {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4);
+}
+
+a {
+  color: var(--color-primary);
+  font-weight: 800;
+}

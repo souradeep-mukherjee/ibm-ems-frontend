@@ -1,0 +1,13 @@
+<section class="card section" [formGroup]="group()">
+  <div class="section-title"><h2>Employment Information</h2></div>
+  <div class="form-grid">
+    <label>Joining Date<input class="input-like" type="date" formControlName="joiningDate" [readonly]="disableJoiningDate()" /></label>
+    <label>Employment Type<select class="input-like" formControlName="employmentType"><option value="">Select type</option><option *ngFor="let type of types" [value]="type">{{ type }}</option></select></label>
+    <label>Department Id<input class="input-like" formControlName="departmentId" /></label>
+    <label>Department Name<input class="input-like" formControlName="departmentName" /></label>
+    <label>Designation Id<input class="input-like" formControlName="designationId" /></label>
+    <label>Designation Name<input class="input-like" formControlName="designationName" /></label>
+    <label>Manager Id<input class="input-like" formControlName="managerId" /></label>
+    <label>Work Location<input class="input-like" formControlName="workLocation" /></label>
+  </div>
+</section>

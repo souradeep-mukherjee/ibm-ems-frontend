@@ -1,0 +1,16 @@
+<main class="login-page">
+  <section class="login-card card">
+    <div>
+      <p class="eyebrow">Employee Management System</p>
+      <h1>Sign in</h1>
+      <p>Use the demo token endpoint to access employee operations.</p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <label>Username<input class="input-like" formControlName="username" /></label>
+      <label>Roles<input class="input-like" formControlName="roles" placeholder="ROLE_ADMIN" /></label>
+      <p class="field-error" *ngIf="error()">{{ error() }}</p>
+      <app-button type="submit" [disabled]="loading()">{{ loading() ? 'Signing in...' : 'Generate token' }}</app-button>
+    </form>
+  </section>
+</main>

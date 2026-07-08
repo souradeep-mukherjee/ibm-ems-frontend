@@ -1,0 +1,18 @@
+.skeleton {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.line {
+  height: 3rem;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(90deg, #edf2f7 0%, #f7f9fc 50%, #edf2f7 100%);
+  background-size: 200% 100%;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  to {
+    background-position: -200% 0;
+  }
+}

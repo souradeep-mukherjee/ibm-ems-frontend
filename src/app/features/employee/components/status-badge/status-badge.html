@@ -1,0 +1,10 @@
+<span
+  class="badge"
+  [class.active]="status() === 'ACTIVE'"
+  [class.inactive]="status() === 'INACTIVE'"
+  [class.on-probation]="status() === 'ON_PROBATION'"
+  [class.resigned]="status() === 'RESIGNED'"
+  [class.terminated]="status() === 'TERMINATED'"
+>
+  {{ label() }}
+</span>

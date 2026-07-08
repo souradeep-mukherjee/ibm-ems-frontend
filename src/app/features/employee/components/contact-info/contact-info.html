@@ -1,0 +1,8 @@
+<section class="card section" [formGroup]="group()">
+  <div class="section-title"><h2>Contact Information</h2></div>
+  <div class="form-grid">
+    <label>Email<input class="input-like" type="email" formControlName="email" [readonly]="emailReadonly()" /><small class="field-error" *ngIf="group().get('email')?.touched && group().get('email')?.invalid">Valid email is required.</small></label>
+    <label>Phone Number<input class="input-like" formControlName="phoneNumber" placeholder="9876543210" /><small class="field-error" *ngIf="group().get('phoneNumber')?.errors?.['indianPhone']">Enter a valid Indian phone number.</small></label>
+    <label>Alternate Phone<input class="input-like" formControlName="alternatePhoneNumber" /><small class="field-error" *ngIf="group().get('alternatePhoneNumber')?.errors?.['indianPhone']">Enter a valid Indian phone number.</small></label>
+  </div>
+</section>

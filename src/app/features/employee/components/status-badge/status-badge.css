@@ -1,0 +1,29 @@
+.badge {
+  background: #edf5ff;
+  color: var(--color-primary);
+}
+
+.active {
+  background: #defbe6;
+  color: var(--color-success);
+}
+
+.inactive {
+  background: #e0e0e0;
+  color: #525252;
+}
+
+.on-probation {
+  background: #fff4ce;
+  color: #8a6d00;
+}
+
+.resigned {
+  background: #e8daff;
+  color: #6929c4;
+}
+
+.terminated {
+  background: #ffd7d9;
+  color: var(--color-danger);
+}

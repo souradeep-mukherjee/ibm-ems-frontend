@@ -1,0 +1,15 @@
+.employee-form {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.form-actions {
+  justify-content: flex-end;
+}
+
+.backend-errors {
+  border: 1px solid #ffd7d9;
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  background: #fff1f1;
+}

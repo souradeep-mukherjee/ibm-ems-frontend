@@ -1,0 +1,9 @@
+<app-confirm-dialog
+  [open]="employee() !== null"
+  title="Delete employee"
+  [message]="'Delete ' + (employee()?.firstName || 'this employee') + '? This performs a backend soft delete.'"
+  confirmLabel="Delete"
+  tone="danger"
+  (cancelled)="cancelled.emit()"
+  (confirmed)="confirmed.emit()"
+/>

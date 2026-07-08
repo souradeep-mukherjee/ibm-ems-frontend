@@ -1,0 +1,8 @@
+<article class="card employee-card">
+  <div>
+    <h3>{{ employee().firstName }} {{ employee().lastName }}</h3>
+    <p>{{ employee().designationName || 'No designation' }} · {{ employee().departmentName || 'No department' }}</p>
+  </div>
+  <app-status-badge [status]="employee().employmentStatus" />
+  <a [routerLink]="['/employees', employee().id]">View profile</a>
+</article>

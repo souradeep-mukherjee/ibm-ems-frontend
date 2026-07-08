@@ -1,0 +1,7 @@
+<nav class="pager" aria-label="Pagination">
+  <span>{{ label() }} · {{ totalElements() }} employees</span>
+  <div class="actions">
+    <app-button variant="secondary" [disabled]="page() === 0" (click)="previous()">Previous</app-button>
+    <app-button variant="secondary" [disabled]="page() + 1 >= totalPages()" (click)="next()">Next</app-button>
+  </div>
+</nav>

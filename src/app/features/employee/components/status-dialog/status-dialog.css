@@ -1,0 +1,6 @@
+.select-label {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-weight: 700;
+}

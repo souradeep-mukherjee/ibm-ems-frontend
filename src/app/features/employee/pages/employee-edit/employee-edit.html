@@ -1,0 +1,4 @@
+<app-page-header title="Edit Employee" subtitle="Update employee profile" />
+<app-skeleton *ngIf="loading()" [rows]="5" />
+<app-error-state *ngIf="failed()" title="Employee not found" message="Unable to load this employee." />
+<app-employee-form *ngIf="employee()" mode="edit" [employee]="employee()" [loading]="saving()" (saveUpdate)="save($event)" (cancel)="cancel()" />

@@ -1,0 +1,32 @@
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th><button type="button" (click)="sortChange.emit('firstName')">Name {{ direction() === 'asc' ? '↑' : '↓' }}</button></th>
+        <th>Code</th>
+        <th>Department</th>
+        <th>Designation</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees()">
+        <td>
+          <strong>{{ employee.firstName }} {{ employee.lastName }}</strong>
+          <small>{{ employee.email }}</small>
+        </td>
+        <td>{{ employee.employeeCode }}</td>
+        <td>{{ employee.departmentName || '-' }}</td>
+        <td>{{ employee.designationName || '-' }}</td>
+        <td><app-status-badge [status]="employee.employmentStatus" /></td>
+        <td class="row-actions">
+          <a [routerLink]="['/employees', employee.id]">View</a>
+          <a [routerLink]="['/employees', employee.id, 'edit']">Edit</a>
+          <button type="button" (click)="statusClick.emit(employee)">Status</button>
+          <button type="button" class="danger" (click)="deleteClick.emit(employee)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

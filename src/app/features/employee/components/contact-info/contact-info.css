@@ -1,0 +1,9 @@
+.section {
+  padding: var(--space-5);
+}
+
+label {
+  display: grid;
+  gap: 0.4rem;
+  font-weight: 650;
+}

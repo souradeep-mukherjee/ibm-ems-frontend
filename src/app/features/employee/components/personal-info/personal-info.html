@@ -1,0 +1,11 @@
+<section class="card section" [formGroup]="group()">
+  <div class="section-title"><h2>Personal Information</h2></div>
+  <div class="form-grid">
+    <label>First Name<input class="input-like" formControlName="firstName" /><small class="field-error" *ngIf="group().get('firstName')?.touched && group().get('firstName')?.invalid">First name is required.</small></label>
+    <label>Middle Name<input class="input-like" formControlName="middleName" /></label>
+    <label>Last Name<input class="input-like" formControlName="lastName" /><small class="field-error" *ngIf="group().get('lastName')?.touched && group().get('lastName')?.invalid">Last name is required.</small></label>
+    <label>Gender<select class="input-like" formControlName="gender"><option value="">Select gender</option><option *ngFor="let gender of genders" [value]="gender">{{ gender }}</option></select></label>
+    <label>Date of Birth<input class="input-like" type="date" formControlName="dateOfBirth" /></label>
+    <label>Nationality<input class="input-like" formControlName="nationality" /></label>
+  </div>
+</section>

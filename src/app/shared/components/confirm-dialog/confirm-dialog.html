@@ -1,0 +1,11 @@
+<div *ngIf="open()" class="backdrop" role="presentation">
+  <section class="dialog card" role="dialog" aria-modal="true">
+    <h2>{{ title() }}</h2>
+    <p>{{ message() }}</p>
+    <ng-content />
+    <div class="actions">
+      <app-button variant="secondary" (click)="cancelled.emit()">Cancel</app-button>
+      <app-button [variant]="tone()" (click)="confirmed.emit()">{{ confirmLabel() }}</app-button>
+    </div>
+  </section>
+</div>

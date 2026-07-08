@@ -1,0 +1,2 @@
+<app-page-header title="Add Employee" subtitle="Create a new employee profile" />
+<app-employee-form mode="create" [loading]="loading()" (saveCreate)="save($event)" (cancel)="cancel()" />

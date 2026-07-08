@@ -1,1 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+@import './assets/styles/variables.css';
+@import './assets/styles/reset.css';
+@import './assets/styles/typography.css';
+@import './assets/styles/global.css';
+
+body { background: var(--color-bg); }
+html, body { width: 100%; }
+button:disabled, input:disabled, select:disabled { opacity: 0.62; cursor: not-allowed; }
+

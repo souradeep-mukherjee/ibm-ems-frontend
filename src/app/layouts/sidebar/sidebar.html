@@ -1,0 +1,5 @@
+<aside class="sidebar">
+  <nav>
+    <a *ngFor="let link of links" [routerLink]="link.route" routerLinkActive="active">{{ link.label }}</a>
+  </nav>
+</aside>

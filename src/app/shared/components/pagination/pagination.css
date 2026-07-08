@@ -1,0 +1,9 @@
+.pager {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: var(--space-4) 0;
+  color: var(--color-muted);
+}

@@ -1,0 +1,15 @@
+<form class="employee-form" [formGroup]="form" (ngSubmit)="submit()">
+  <app-personal-info [group]="form.controls.personal" />
+  <app-contact-info [group]="form.controls.contact" [emailReadonly]="mode() === 'edit'" />
+  <app-employment-info [group]="form.controls.employment" [disableJoiningDate]="mode() === 'edit'" />
+  <app-address-form [group]="form.controls.addresses" />
+
+  <div class="backend-errors" *ngIf="backendErrors | keyvalue as errors">
+    <p class="field-error" *ngFor="let error of errors">{{ error.key }}: {{ error.value }}</p>
+  </div>
+
+  <div class="actions form-actions">
+    <app-button type="button" variant="secondary" (click)="cancel.emit()">Cancel</app-button>
+    <app-button type="submit" [disabled]="loading()">{{ loading() ? 'Saving...' : 'Save Employee' }}</app-button>
+  </div>
+</form>

@@ -1,0 +1,58 @@
+.create-link {
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 1rem;
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 800;
+}
+
+.dashboard {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: var(--space-4);
+}
+
+.metric {
+  display: grid;
+  gap: 0.6rem;
+  padding: var(--space-4);
+}
+
+.metric span {
+  color: var(--color-muted);
+  font-weight: 700;
+}
+
+.metric strong {
+  color: var(--color-primary);
+  font-size: 2rem;
+}
+
+.panel {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-5);
+}
+
+.type-row {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.75rem 0;
+}
+
+.recent-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: var(--space-4);
+}
+
+.section-title a {
+  color: var(--color-primary);
+  font-weight: 800;
+}

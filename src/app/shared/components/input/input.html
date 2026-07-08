@@ -1,0 +1,13 @@
+<label class="field">
+  <span *ngIf="label()">{{ label() }}</span>
+  <input
+    class="input-like"
+    [type]="type()"
+    [placeholder]="placeholder()"
+    [disabled]="disabled"
+    [value]="value"
+    (input)="update($any($event.target).value)"
+    (blur)="blur()"
+  />
+  <small *ngIf="error()" class="field-error">{{ error() }}</small>
+</label>

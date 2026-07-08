@@ -1,0 +1,24 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 4rem;
+  padding: 0 var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  background: #fff;
+}
+
+.brand {
+  color: var(--color-primary);
+  font-weight: 850;
+}
+
+.logout {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.8rem;
+  background: #fff;
+}
