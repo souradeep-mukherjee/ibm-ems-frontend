@@ -1,1 +1,39 @@
-<p>attendance-history works!</p>
+<section class="card section">
+    <div class="section-title">
+        <h2>Attendance History</h2>
+    </div>
+
+    <div class="table-wrapper" *ngIf="history().length; else noData">
+        <table class="attendance-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Check In</th>
+                    <th>Check Out</th>
+                    <th>Working Hours</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let record of history()">
+                    <td>{{ record.date }}</td>
+                    <td>{{ record.checkIn }}</td>
+                    <td>{{ record.checkOut }}</td>
+                    <td>{{ record.workingHours }}</td>
+                    <td>{{ record.status }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <ng-template #noData>
+        <p class="empty-state">
+            No attendance records found.
+        </p>
+    </ng-template>
+
+    <p class="field-error" *ngIf="error()">
+        {{ error() }}
+    </p>
+</section>

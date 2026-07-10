@@ -1,6 +1,8 @@
 import { environment } from '../../../environments/environment';
 
 export const API_BASE_URL = environment.apiBaseUrl;
+export const ATTENDANCE_API_BASE_URL = environment.attendanceBaseUrl;
+
 export const API_ENDPOINTS = {
   authToken: '/api/v1/auth/token',
   employees: '/api/v1/employees',
@@ -11,5 +13,10 @@ export const API_ENDPOINTS = {
   employeesByManager: (managerId: string) => `/api/v1/employees/manager/${managerId}`,
   employeesByStatus: (status: string) => `/api/v1/employees/status/${status}`,
   employeeStatus: (id: string) => `/api/v1/employees/${id}/status`,
-  employeesAll: '/api/v1/employees/all'
+  employeesAll: '/api/v1/employees/all',
+
+  attendanceCheckIn: '/attendance/checkin',
+  attendanceCheckOut: '/attendance/checkout',
+  attendanceHistory: (employeeId: string) => `/attendance/history/${employeeId}`,
+  attendanceMonthlyReport: (employeeId: string) => `/attendance/monthly/${employeeId}`
 } as const;

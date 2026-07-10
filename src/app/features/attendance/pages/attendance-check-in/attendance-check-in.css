@@ -1,0 +1,22 @@
+.section {
+    margin-top: 5%;
+    padding: var(--space-5);
+}
+
+.description {
+    margin-bottom: var(--space-4);
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.success-message {
+    margin-top: var(--space-4);
+    color: #198754;
+}
+
+.field-error {
+    margin-top: var(--space-4);
+}
