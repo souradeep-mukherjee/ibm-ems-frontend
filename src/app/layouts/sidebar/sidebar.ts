@@ -13,6 +13,7 @@ export class SidebarComponent {
   readonly links = [
     { label: 'Dashboard', route: '/dashboard' },
     { label: 'Employees', route: '/employees' },
-    { label: 'Add Employee', route: '/employees/create' }
+    { label: 'Add Employee', route: '/employees/create' },
+    { label: 'Attendance', route: '/attendance' }
   ];
 }

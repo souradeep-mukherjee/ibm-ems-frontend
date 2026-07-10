@@ -1,0 +1,10 @@
+<nav class="attendance-navbar">
+  @for (link of links; track link.route) {
+    <a
+      [routerLink]="link.route"
+      routerLinkActive="active"
+    >
+      {{ link.label }}
+    </a>
+  }
+</nav>
