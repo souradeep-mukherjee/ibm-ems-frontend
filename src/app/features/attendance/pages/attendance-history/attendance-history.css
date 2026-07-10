@@ -1,0 +1,40 @@
+.section {
+    padding: var(--space-5);
+    margin-top: 5%;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.attendance-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.attendance-table th,
+.attendance-table td {
+    padding: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+    text-align: left;
+}
+
+.attendance-table th {
+    font-weight: 700;
+}
+
+.empty-state {
+    text-align: center;
+    padding: var(--space-5);
+    color: var(--color-text-secondary);
+}
+
+.field-error {
+    margin-top: var(--space-4);
+}
+
+@media (max-width: 768px) {
+    .attendance-table {
+        font-size: 0.9rem;
+    }
+}

@@ -1,1 +1,57 @@
-<p>attendance-report works!</p>
+<section class="card section">
+    <div class="section-title">
+        <h2>Monthly Attendance Report</h2>
+    </div>
+
+    <div class="report-grid" *ngIf="report(); else noData">
+        <div class="report-item">
+            <span class="label">Employee ID</span>
+            <span>{{ report()?.employeeId }}</span>
+        </div>
+
+        <div class="report-item">
+            <span class="label">Month</span>
+            <span>{{ report()?.month }}</span>
+        </div>
+
+        <div class="report-item">
+            <span class="label">Year</span>
+            <span>{{ report()?.year }}</span>
+        </div>
+
+        <div class="report-item">
+            <span class="label">Working Days</span>
+            <span>{{ report()?.totalWorkingDays }}</span>
+        </div>
+
+        <div class="report-item">
+            <span class="label">Present Days</span>
+            <span>{{ report()?.presentDays }}</span>
+        </div>
+
+        <div class="report-item">
+            <span class="label">Absent Days</span>
+            <span>{{ report()?.absentDays }}</span>
+        </div>
+
+        <div class="report-item">
+            <span class="label">Working Hours</span>
+            <span>{{ report()?.totalWorkingHours }}</span>
+        </div>
+
+        <div class="report-item">
+            <span class="label">Overtime Hours</span>
+            <span>{{ report()?.overtimeHours }}</span>
+        </div>
+    </div>
+
+    <ng-template #noData>
+        <p class="empty-state">
+            Monthly report not available.
+        </p>
+    </ng-template>
+
+    <p class="field-error" *ngIf="error()">
+        {{ error() }}
+    </p>
+</section>
