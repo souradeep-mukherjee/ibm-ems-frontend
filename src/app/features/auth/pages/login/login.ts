@@ -14,7 +14,7 @@ import { ButtonComponent } from '../../../../shared/components/button/button';
   standalone: true,
   imports: [NgIf, ReactiveFormsModule, ButtonComponent],
   templateUrl: './login.html',
-  styleUrl: './login.css'
+  styleUrl: './login.css',
 })
 export class LoginComponent {
   private readonly fb = inject(FormBuilder);
@@ -25,8 +25,8 @@ export class LoginComponent {
   readonly loading = signal(false);
   readonly error = signal('');
   readonly form = this.fb.group({
-    username: ['admin', Validators.required],
-    roles: ['ROLE_ADMIN', Validators.required]
+    username: ['', Validators.required],
+    password: ['', Validators.required],
   });
 
   submit(): void {
@@ -36,15 +36,28 @@ export class LoginComponent {
     }
 
     const raw = this.form.getRawValue();
-    const roles = (raw.roles ?? '').split(',').map((role) => role.trim()).filter(Boolean);
+    console.log('raw', raw);
+    // const roles = (raw.password ?? '')
+    //   .split(',')
+    //   .map((role) => role.trim())
+    //   .filter(Boolean);
     this.loading.set(true);
     this.error.set('');
-    this.auth.login({ username: raw.username ?? '', roles }).pipe(finalize(() => this.loading.set(false))).subscribe({
-      next: () => {
-        this.snack.success('Signed in successfully');
-        void this.router.navigateByUrl(ROUTES.dashboard);
-      },
-      error: (error: HttpErrorResponse) => this.error.set(error.message)
-    });
+    this.auth
+      .login({ username: raw.username ?? '', password: raw.password ?? '' })
+      .pipe(finalize(() => this.loading.set(false)))
+      .subscribe({
+        next: () => {
+          this.snack.success('Signed in successfully');
+          const destination =
+            this.auth.isAdmin() || this.auth.isManager()
+              ? ROUTES.dashboard
+              : this.auth.isEmployee()
+                ? ROUTES.attendance
+                : ROUTES.login;
+          void this.router.navigateByUrl(destination);
+        },
+        error: (error: HttpErrorResponse) => this.error.set(error.message),
+      });
   }
 }

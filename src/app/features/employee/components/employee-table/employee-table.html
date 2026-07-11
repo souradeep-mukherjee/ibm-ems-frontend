@@ -2,7 +2,11 @@
   <table>
     <thead>
       <tr>
-        <th><button type="button" (click)="sortChange.emit('firstName')">Name {{ direction() === 'asc' ? '↑' : '↓' }}</button></th>
+        <th>
+          <button type="button" (click)="sortChange.emit('firstName')">
+            Name {{ direction() === 'asc' ? '↑' : '↓' }}
+          </button>
+        </th>
         <th>Code</th>
         <th>Department</th>
         <th>Designation</th>
@@ -22,9 +26,22 @@
         <td><app-status-badge [status]="employee.employmentStatus" /></td>
         <td class="row-actions">
           <a [routerLink]="['/employees', employee.id]">View</a>
-          <a [routerLink]="['/employees', employee.id, 'edit']">Edit</a>
-          <button type="button" (click)="statusClick.emit(employee)">Status</button>
-          <button type="button" class="danger" (click)="deleteClick.emit(employee)">Delete</button>
+          <a *ngIf="auth.isAdmin()" [routerLink]="['/employees', employee.id, 'edit']">Edit</a>
+          <button
+            *ngIf="auth.hasAnyRole([Role.ROLE_ADMIN, Role.ROLE_MANAGER])"
+            type="button"
+            (click)="statusClick.emit(employee)"
+          >
+            Status
+          </button>
+          <button
+            *ngIf="auth.isAdmin()"
+            type="button"
+            class="danger"
+            (click)="deleteClick.emit(employee)"
+          >
+            Delete
+          </button>
         </td>
       </tr>
     </tbody>

@@ -21,10 +21,13 @@ describe('AuthService', () => {
       getItem: (key: string) => values.get(key) ?? null,
       setItem: (key: string, value: string) => values.set(key, value),
       removeItem: (key: string) => values.delete(key),
-      clear: () => values.clear()
+      clear: () => values.clear(),
     });
     TestBed.configureTestingModule({
-      providers: [provideRouter([{ path: 'login', component: LoginStubComponent }]), { provide: AuthApiService, useClass: AuthApiMock }]
+      providers: [
+        provideRouter([{ path: 'login', component: LoginStubComponent }]),
+        { provide: AuthApiService, useClass: AuthApiMock },
+      ],
     });
   });
 
@@ -32,7 +35,9 @@ describe('AuthService', () => {
 
   it('stores token on login', async () => {
     const service = TestBed.inject(AuthService);
-    await new Promise<void>((resolve) => service.login({ username: 'admin', roles: ['ROLE_ADMIN'] }).subscribe(() => resolve()));
+    await new Promise<void>((resolve) =>
+      service.login({ username: 'ritesh', password: 'ritesh123' }).subscribe(() => resolve()),
+    );
     expect(service.isAuthenticated()).toBe(true);
     expect(service.token()).toBe('abc');
   });

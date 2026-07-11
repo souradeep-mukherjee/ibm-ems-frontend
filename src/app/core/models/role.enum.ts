@@ -1,0 +1,7 @@
+export enum Role {
+  ROLE_ADMIN = 'ROLE_ADMIN',
+  ROLE_MANAGER = 'ROLE_MANAGER',
+  ROLE_EMPLOYEE = 'ROLE_EMPLOYEE',
+}
+
+export const ALL_ADMIN_ROLES: Role[] = [Role.ROLE_ADMIN];

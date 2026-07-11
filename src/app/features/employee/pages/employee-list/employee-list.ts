@@ -15,6 +15,7 @@ import { StatusDialogComponent } from '../../components/status-dialog/status-dia
 import { Employee, EmployeeFilters } from '../../models/employee.model';
 import { EMPLOYMENT_STATUS_OPTIONS, EmploymentStatus } from '../../models/employment-status.enum';
 import { EmployeeService } from '../../services/employee.service';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -31,14 +32,15 @@ import { EmployeeService } from '../../services/employee.service';
     EmployeeTableComponent,
     PaginationComponent,
     DeleteDialogComponent,
-    StatusDialogComponent
+    StatusDialogComponent,
   ],
   templateUrl: './employee-list.html',
-  styleUrl: './employee-list.css'
+  styleUrl: './employee-list.css',
 })
 export class EmployeeListComponent implements OnInit {
   private readonly service = inject(EmployeeService);
   private readonly snack = inject(SnackbarService);
+  readonly auth = inject(AuthService);
   readonly statuses = EMPLOYMENT_STATUS_OPTIONS;
   readonly loading = signal(true);
   readonly page = signal(0);
@@ -49,7 +51,13 @@ export class EmployeeListComponent implements OnInit {
   readonly employees = signal<Employee[]>([]);
   readonly selectedForDelete = signal<Employee | null>(null);
   readonly selectedForStatus = signal<Employee | null>(null);
-  readonly filters = signal<EmployeeFilters>({ search: '', departmentId: '', designationId: '', managerId: '', status: '' });
+  readonly filters = signal<EmployeeFilters>({
+    search: '',
+    departmentId: '',
+    designationId: '',
+    managerId: '',
+    status: '',
+  });
   readonly hasFilters = computed(() => Object.values(this.filters()).some(Boolean));
 
   ngOnInit(): void {
@@ -69,7 +77,7 @@ export class EmployeeListComponent implements OnInit {
         this.employees.set([]);
         this.loading.set(false);
       },
-      complete: () => this.loading.set(false)
+      complete: () => this.loading.set(false),
     });
   }
 
@@ -79,13 +87,18 @@ export class EmployeeListComponent implements OnInit {
       next: (employees) => {
         const filter = this.filters();
         const search = filter.search.toLowerCase();
-        const filtered = employees.filter((employee) => (
-          (!search || [employee.firstName, employee.lastName, employee.email, employee.employeeCode].join(' ').toLowerCase().includes(search)) &&
-          (!filter.departmentId || employee.departmentId === filter.departmentId) &&
-          (!filter.designationId || employee.designationId === filter.designationId) &&
-          (!filter.managerId || employee.managerId === filter.managerId) &&
-          (!filter.status || employee.employmentStatus === filter.status)
-        ));
+        const filtered = employees.filter(
+          (employee) =>
+            (!search ||
+              [employee.firstName, employee.lastName, employee.email, employee.employeeCode]
+                .join(' ')
+                .toLowerCase()
+                .includes(search)) &&
+            (!filter.departmentId || employee.departmentId === filter.departmentId) &&
+            (!filter.designationId || employee.designationId === filter.designationId) &&
+            (!filter.managerId || employee.managerId === filter.managerId) &&
+            (!filter.status || employee.employmentStatus === filter.status),
+        );
         this.employees.set(filtered);
         this.totalElements.set(filtered.length);
         this.totalPages.set(filtered.length ? 1 : 0);
@@ -95,17 +108,24 @@ export class EmployeeListComponent implements OnInit {
         this.employees.set([]);
         this.loading.set(false);
       },
-      complete: () => this.loading.set(false)
+      complete: () => this.loading.set(false),
     });
   }
 
   clearFilters(): void {
-    this.filters.set({ search: '', departmentId: '', designationId: '', managerId: '', status: '' });
+    this.filters.set({
+      search: '',
+      departmentId: '',
+      designationId: '',
+      managerId: '',
+      status: '',
+    });
     this.load(0);
   }
 
   sort(field: string): void {
-    if (this.sortBy() === field) this.direction.update((value) => value === 'asc' ? 'desc' : 'asc');
+    if (this.sortBy() === field)
+      this.direction.update((value) => (value === 'asc' ? 'desc' : 'asc'));
     else this.sortBy.set(field);
     this.load(0);
   }

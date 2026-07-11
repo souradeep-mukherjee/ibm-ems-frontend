@@ -10,7 +10,7 @@ import { LoadingSpinnerComponent } from './shared/components/loading-spinner/loa
   standalone: true,
   imports: [NgIf, RouterOutlet, LoadingSpinnerComponent],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
 export class App {
   readonly loading = inject(LoadingService);

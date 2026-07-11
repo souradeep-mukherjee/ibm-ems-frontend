@@ -1,3 +1,9 @@
 export interface JwtResponse {
-  token: string;
+  success: boolean;
+  message: string;
+  data: {
+    token: string;
+    username: string;
+    roles: string[];
+  };
 }

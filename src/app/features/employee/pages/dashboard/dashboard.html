@@ -1,5 +1,5 @@
 <app-page-header title="Dashboard" subtitle="Operational snapshot for employee records">
-  <a routerLink="/employees/create" class="create-link">Add Employee</a>
+  <a *ngIf="auth.isAdmin()" routerLink="/employees/create" class="create-link">Add Employee</a>
 </app-page-header>
 
 <app-skeleton *ngIf="loading()" [rows]="5" />
