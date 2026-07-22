@@ -34,8 +34,66 @@
     margin-top: var(--space-4);
 }
 
+.report-filter {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--space-4);
+    margin-bottom: var(--space-5);
+    flex-wrap: wrap;
+}
+
+.report-filter div {
+    display: flex;
+    flex-direction: column;
+}
+
+.report-filter label {
+    margin-bottom: var(--space-2);
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-text-secondary);
+}
+
+.report-filter input {
+    width: 120px;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    outline: none;
+}
+
+.report-filter input:focus {
+    border-color: #2563eb;
+}
+
+.report-filter button {
+    padding: 0.65rem 1.25rem;
+    border: none;
+    border-radius: var(--radius-md);
+    background: #2563eb;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.report-filter button:hover {
+    background: #1d4ed8;
+}
+
 @media (max-width: 768px) {
     .report-grid {
         grid-template-columns: 1fr;
+    }
+
+    .report-filter {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .report-filter input,
+    .report-filter button {
+        width: 100%;
     }
 }

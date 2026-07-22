@@ -3,11 +3,31 @@
         <h2>Monthly Attendance Report</h2>
     </div>
 
-    <div class="report-grid" *ngIf="report(); else noData">
-        <div class="report-item">
-            <span class="label">Employee ID</span>
-            <span>{{ report()?.employeeId }}</span>
+    <div class="report-filter">
+
+        <div>
+            <label>Month</label>
+            <input
+                type="number"
+                min="1"
+                max="12"
+                [(ngModel)]="month">
         </div>
+
+        <div>
+            <label>Year</label>
+            <input
+                type="number"
+                [(ngModel)]="year">
+        </div>
+
+        <button (click)="onSearch()">
+            Get Report
+        </button>
+
+    </div>
+
+    <div class="report-grid" *ngIf="report(); else noData">
 
         <div class="report-item">
             <span class="label">Month</span>

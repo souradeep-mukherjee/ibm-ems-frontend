@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { AttendanceNav } from '../../components/attendance-nav/attendance-nav';
-import { AttendanceCheckIn } from '../attendance-check-in/attendance-check-in';
-import { AttendanceHistory } from '../attendance-history/attendance-history';
-import { AttendanceCheckOut } from '../attendance-check-out/attendance-check-out';
-import { AttendanceReport } from '../attendance-report/attendance-report';
 import { RouterOutlet } from '@angular/router';
+import { AuthApiService } from '../../../auth/services/auth-api.service';
+import { AttendanceService } from '../../services/attendance-service';
+import { UserDetails } from '../../models/user-details';
 
 @Component({
   selector: 'app-attendance',
@@ -12,4 +11,16 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './attendance.html',
   styleUrl: './attendance.css',
 })
-export class Attendance {}
+export class Attendance implements OnInit {
+ 
+  private readonly attendanceService = inject(AttendanceService);
+  private readonly authService = inject(AuthApiService);
+ 
+  ngOnInit(): void {
+    this.attendanceService.getCurrentUser().subscribe({
+      next: (res: UserDetails) => {
+        this.authService.setEmployeeId(res.data.id);
+      }
+    });
+  }
+}
