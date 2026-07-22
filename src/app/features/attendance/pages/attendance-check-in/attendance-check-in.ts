@@ -11,6 +11,7 @@ import { Component, inject, signal } from '@angular/core';
 import { AttendanceService } from '../../services/attendance-service';
 import { ButtonComponent } from '../../../../shared/components/button/button';
 import { CommonModule } from '@angular/common';
+import { AuthApiService } from '../../../auth/services/auth-api.service';
 
 @Component({
   selector: 'app-check-in',
@@ -21,21 +22,21 @@ import { CommonModule } from '@angular/common';
 })
 export class AttendanceCheckIn {
   private readonly attendanceService = inject(AttendanceService);
+  private readonly authService = inject(AuthApiService);
 
   readonly loading = signal(false);
   readonly message = signal('');
   readonly error = signal('');
-
-  private readonly data = {
-    employeeId: 'EMP101'
-  };
-
+  
   checkIn(): void {
     this.loading.set(true);
     this.message.set('');
     this.error.set('');
 
-    this.attendanceService.checkIn(this.data).subscribe({
+    const employeeId = this.authService.getEmployeeId();
+    if (!employeeId) return;
+
+    this.attendanceService.checkIn({ employeeId }).subscribe({
       next: () => {
         this.message.set('Checked in successfully.');
         this.loading.set(false);

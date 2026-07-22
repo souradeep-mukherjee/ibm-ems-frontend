@@ -7,6 +7,7 @@ export const ATTENDANCE_API_BASE_URL = environment.attendanceBaseUrl;
 
 export const API_ENDPOINTS = {
   authLogin: '/api/v1/auth/login',
+  authUser: '/api/v1/users/me',
   employees: '/api/v1/employees',
   employeeById: (id: string) => `/api/v1/employees/${id}`,
   employeeByCode: (code: string) => `/api/v1/employees/code/${code}`,
